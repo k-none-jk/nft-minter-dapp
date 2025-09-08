@@ -2,18 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mint your own NFT using the SimpleNFT Minter." />
+  <meta name="author" content="Your Name or Company" />
   <title>SimpleNFT Minter</title>
+  <link rel="stylesheet" href="styles.css" /> <!-- Assuming you will add styles in a separate file -->
 </head>
 <body>
-  <h1>SimpleNFT Minter</h1>
-  <button id="connect">Connect Wallet</button>
-  <button id="mint">Mint NFT</button>
-  <div id="status"></div>
-  <div id="supply"></div>
+  <header>
+    <h1>SimpleNFT Minter</h1>
+  </header>
+
+  <main>
+    <button id="connect">Connect Wallet</button>
+    <button id="mint">Mint NFT</button>
+    <div id="status"></div>
+    <div id="supply"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SimpleNFT. All Rights Reserved.</p>
+  </footer>
 
   <!-- Ethers v5 UMD -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <script src="./script.js"></script>
+  <script>
+    // Example of how you can use the status div to show user feedback
+    const statusDiv = document.getElementById("status");
+    const mintButton = document.getElementById("mint");
+    const connectButton = document.getElementById("connect");
+
+    connectButton.addEventListener("click", async () => {
+      try {
+        // Assuming you have some function to connect the wallet
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        statusDiv.textContent = "Wallet connected successfully!";
+      } catch (err) {
+        statusDiv.textContent = "Failed to connect wallet.";
+        console.error(err);
+      }
+    });
+
+    mintButton.addEventListener("click", async () => {
+      try {
+        // Handle minting NFT logic
+        statusDiv.textContent = "Minting your NFT...";
+        // Add your minting logic here (e.g., call a smart contract method)
+        setTimeout(() => {
+          statusDiv.textContent = "NFT Minted successfully!";
+        }, 2000);
+      } catch (err) {
+        statusDiv.textContent = "Minting failed. Please try again.";
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
