@@ -41,7 +41,6 @@
       const totalSupply = await contract.totalSupply();
       supplyDiv.innerText = "Total Supply: " + totalSupply.toString();
     } catch (e) {
-      // ignore until contract is set
     }
   }
 })();
